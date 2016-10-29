@@ -1,0 +1,44 @@
+#explore .ui-content{
+	padding: 0px;
+}
+
+#explore .nd2-card{
+	padding: 0px;
+	max-width: 100%;
+	border-radius: 0px;
+	box-shadow: none;
+	border-bottom: 1px solid #fafafa;
+        margin: 0px;
+}
+
+#explore .nd2-card .card-media{
+    max-height: 320px;
+}
+
+.nd2Tabs .nd2Tabs-active::after {
+    background-color: rgba(0,0,0,0.2);
+    height: 3px;
+}
+
+#explore .card-supporting-text{
+        font-size: 13px;
+    text-transform: none;
+    font-weight: bold;
+}
+
+.ui-panel .ui-listview .ui-btn {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.ui-listview .ui-li-divider{
+    font-size: 12px;
+}
+
+#menu li a{ display: flex; align-items: center;}
+#menu i{ font-size: 28px; }
+
+h1.ui-title{
+        text-transform: none;
+    font-weight: bold;
+}
