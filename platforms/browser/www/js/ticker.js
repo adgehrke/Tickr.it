@@ -1,9 +1,16 @@
 var baseUrl = "http://tickr.adriangehrke.de/";
 
 function pageExplore(){
-    searchExplore();
+    //searchExplore();
     refreshData();
 }
+
+
+$(document).ready(function() { 
+	$( "#registerLater" ).click(function() {
+		$("#welcome").css("opacity","0").delay(300).css("display","none");
+	});
+});
 
 function searchExplore(){
     new $.nd2Search({
@@ -33,16 +40,13 @@ function searchExplore(){
 function getTicker(){
     $("#exploreContent").html("");
     var name = "getTicker";
-    console.log(name+"() is fired");
     var capMin = 1;
     var capMax = 1;
     
     $.getJSON( baseUrl+"/ajax/getTickerList.php/", { capacityMin: capMin, capacityMax: capMax} )
     .done(function( json ) {
     
-            console.log(name+"() got data");
             $.each(json, function (i, item){
-                    console.log(name+"() echos output");
                     getResultHtml('#exploreContent', item);
             });
     
@@ -52,17 +56,22 @@ function getTicker(){
      })
 }
 
-function setActiveTicker(id, title){
-    var name = "setActiveTicker";
+function setActiveTicker(id){
+    console.log("Change Ticker: "+id);
+    activeTicker = id;
+}
+
+function showActiveTicker(id, title){
+    setActiveTicker(id);
     $("#detailContent").html("");
     $("#detailTitle").text(title);
     $.getJSON( baseUrl+"/ajax/getTickerEntries.php/", { tickerId: id } )
     .done(function( json ) {
-    
-            console.log(name+"() got data");
+            console.log("load ticker entries");
+            console.log(json);
             $.each(json, function (i, item){
-                    console.log(name+"() echos output");
-                    getResultHtml('#detailContent', item);
+                appendEntryHTML('#detailContent', item);
+				initParallax(item.id);
             });
     
     })
@@ -71,6 +80,54 @@ function setActiveTicker(id, title){
      })
 }
 
+function initParallax(id){
+	$('#cardImg'+id).parallax({
+	});
+}
+
+function showOverlay(img){
+	console.log("Show Overlay:"+img);
+	var img = baseUrl+'images/blur/'+img+'.jpg';
+	$('#overlay').css("background-image", "url("+img+")");  
+	$('#overlay').css("opacity","1");
+	$('#overlay').css("display","block");
+	
+	$( "#overlay" ).click(function() {
+		$('#overlay').css("opacity","0");
+		$('#overlay').css("display","none");
+	});
+}
+
+function appendEntryHTML(div, ticker){
+    var html = "";
+    var geolocation = ticker.lat+", "+ticker.lng;
+    html = '<div class="card" onclick="showOverlay('+ticker.img+');">';
+		html += '<div class="card-header">';
+			html += '<div class="icon"><img src="img/avatar.png" style=""></div>';
+			html += '<div class="title" style="">@taylorW</div>';
+			html += '<div class="date" style="">'+ticker.creationDate+'</div>';
+			html += '<div class="clear" style=""></div>';
+		html += '</div>';
+		
+		if (ticker.img != ""){
+			html += '<div class="card-image" id="cardImg'+ticker.id+'" scalar-y="0.1">';
+				html += '<img src="'+baseUrl+'images/blur/'+ticker.img+'.jpg"  class="layer" data-depth="0.20">';
+			html += '</div>';
+		}
+		
+		
+		html += '<div class="card-footer" style="">';
+			html += '<div class="likes left"><i class="zmdi zmdi-thumb-up zmd-fw"></i> 5 Likes</div>';
+			html += '<div class="comments left margin"><i class="zmdi zmdi-comment-dots zmd-fw"></i> 73 Comments</div>';
+			html += '<div class="clear"></div>';
+		html += '</div>';
+		
+	html += '</div>';
+	
+	//<img src="'+baseUrl+'images/'+ticker.img+'.jpg"><div class="card-title has-avatar" style="background-color: rgba(0,0,0,0.0);><h3 class="card-primary-title" style="color: #fff;font-weight: bold;font-size: 20px;text-shadow: 1px 1px 2px #777;">'+ticker.headline+'</h3><h5 class="card-subtitle" style="color: #eee;text-transform: none;text-shadow: 1px 1px 2px #777;">'+geolocation+'</h5></div></div><div class="card-supporting-text has-action">'+ticker.text+'</div><div class="card-action"><div class="row between-xs"><div class="col-xs-4"><div class="box"><a href="#" class="ui-btn ui-btn-inline ui-btn-fab"><i class="zmdi zmdi-mic"></i></a><a href="#" class="ui-btn ui-btn-inline ui-btn-fab"><i class="zmdi zmdi-videocam"></i></a></div></div><div class="col-xs-8 align-right"><div class="box">';
+    
+    $(div).append(html);
+}
 function createTicker1(position){
     
     var name = "createTicker";
@@ -79,12 +136,10 @@ function createTicker1(position){
     var img = $("#img").val();
     var lat = position.coords.latitude;
     var lng = position.coords.longitude;
-    console.log(title+desc);
     
     $.getJSON( baseUrl+"/ajax/createTicker.php/", { title: title, desc: desc, img:img, lat:lat, lng:lng } )
     .done(function( json ) {
     
-            console.log(name+"() got data");
             if (json == true){
                 new $.nd2Toast({
 					message : "Tickr created",
@@ -123,9 +178,7 @@ function onError(error){
 }
 
 function createTicker(){
-    navigator.geolocation.getCurrentPosition(createTicker1, onError);
-
-    
+    navigator.geolocation.getCurrentPosition(createTicker1, onError); 
 }
 
 function getResultHtml(div, ticker){
@@ -160,12 +213,21 @@ function getResultHtml(div, ticker){
                             //console.log(geolocation);
                         }
                     }
-                    console.log(geolocation);
+                    //console.log(geolocation);
                 }
                 
                 
             });
-            appendHTML(div, '<div class="nd2-card"><div class="card-media" style="background-image: url('+ticker.img+'); height: 180px; background-size: auto 100%; background-position: center top;"><div class="card-title has-avatar" style="background-color: rgba(0,0,0,0.0);><img class="card-avatar" src="'+avatar+'"><h3 class="card-primary-title" style="color: #fff;font-weight: bold;font-size: 20px;text-shadow: 0px 0px 5px #000;">'+ticker.title+'</h3><h5 class="card-subtitle" style="color: #eee;text-transform: none;text-shadow: 0px 0px 5px #000;">'+geolocation+'</h5></div></div><div class="card-supporting-text has-action">'+str+'</div><div class="card-action"><div class="row between-xs"><div class="col-xs-4"><div class="box"><a href="#" class="ui-btn ui-btn-inline ui-btn-fab"><i class="zmdi zmdi-mic"></i></a><a href="#" class="ui-btn ui-btn-inline ui-btn-fab"><i class="zmdi zmdi-videocam"></i></a></div></div><div class="col-xs-8 align-right"><div class="box"><a href="#detail" data-transition="slide" onclick="setActiveTicker(\''+ticker.id+'\', \''+ticker.title+'\');" class="ui-btn ui-btn-inline" >Show</a></div></div></div></div></div>');
+            var html = "";
+            html = '<div class="nd2-card"><div class="card-media" style="background-image: url('+ticker.img+'); height: 180px; background-size: auto 100%; background-position: center top;"><div class="card-title has-avatar" style="background-color: rgba(0,0,0,0.0);><img class="card-avatar" src="'+avatar+'"><h3 class="card-primary-title" style="color: #fff;font-weight: bold;font-size: 20px;text-shadow: 1px 1px 2px #777;">'+ticker.title+'</h3><h5 class="card-subtitle" style="color: #eee;text-transform: none;text-shadow: 1px 1px 2px #777;">'+geolocation+'</h5></div></div><div class="card-supporting-text has-action">'+str+'</div><div class="card-action"><div class="row between-xs"><div class="col-xs-4"><div class="box"><a href="#" class="ui-btn ui-btn-inline ui-btn-fab"><i class="zmdi zmdi-mic"></i></a><a href="#" class="ui-btn ui-btn-inline ui-btn-fab"><i class="zmdi zmdi-videocam"></i></a></div></div><div class="col-xs-8 align-right"><div class="box">';
+            
+            if (userId == ticker.userId){
+                html += '<a href="#entry" data-transition="slide" onclick="setActiveTicker(\''+ticker.id+'\');" class="ui-btn ui-btn-inline" >Tickr</a>';
+            }
+            
+            html += '<a href="#detail" data-transition="slide" onclick="showActiveTicker(\''+ticker.id+'\', \''+ticker.title+'\');" class="ui-btn green ui-btn-inline">Show</a></div></div></div></div></div>';
+            
+            appendHTML(div, html);
            
             
     
@@ -174,7 +236,6 @@ function getResultHtml(div, ticker){
         alert( "error" );
      })
      .always(function(){
-         console.log("always")
                   
             
              })
@@ -194,7 +255,6 @@ function refreshData(){
 
 function refreshNewest(){
     $("#newest").html("");
-    console.log("Refresh Newest");
     $("#newest").html("<li data-role='list-divider'>Newest</li>")
     $.getJSON( baseUrl+"/ajax/getTickerList.php/", { limit: 2} )
     .done(function( json ) {
@@ -210,5 +270,4 @@ function refreshNewest(){
         alert( "error" );
      })
 }
-
 

@@ -31,7 +31,7 @@
 		<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'" />
 		<meta name="format-detection" content="telephone=no">
 		<meta name="msapplication-tap-highlight" content="no">
-                <meta charset="utf-8"/>
+		<meta charset="utf-8"/>
 		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
 		<link rel="stylesheet" type="text/css" href="css/index.css">
 		<link rel="stylesheet" href="css/font-awesome.min.css" />
@@ -40,17 +40,34 @@
 		<link rel="stylesheet" href="nativedroid/vendor/wow/animate.css" />
 		<link rel="stylesheet" href="nativedroid/css/nativedroid2.css" />
 		<link rel="stylesheet" href="css/explore.css" />
+		<link rel="stylesheet" href="css/profile.css" />
+		<link rel="stylesheet" href="css/buttons.css" />
+		<link rel="stylesheet" href="css/welcome.css" />
+		
 		<title>Hello World</title>
 	</head>
 	<body>
+		
+		<div id="welcome" style="z-index: 10000; position: absolute; width: 100%; height: 100%;">
+			<img src="img/california2.jpg" id="welcomeImg" style="position: absolute; height: 100%; width: auto;">
+			<div id="welcomeContent" style="width: 70%; position: relative; top: 80%; text-align: center; margin: 0 auto;">
+				<a href="#" class="ui-btn waves-button green" style="margin-bottom: 10px;">Login</a>
+				<a href="#" class="ui-btn waves-button blue" style="margin-bottom: 10px;">Register</a>
+				<a href='#' id="registerLater">Register later</a>
+			</div>
+			
+
+			
+		</div>
 		<div data-role="page" id="dashboard">
 			<!-- panel left -->
+			
 			<div data-role="panel" id="leftpanel" data-display="overlay" data-position-fixed="true" >
 				<nd2-include data-src="fragments/panel.left.html"></nd2-include>
 			</div>
 			<!-- /panel left -->
 			<div data-role="header" data-id="foo1" data-position="fixed" class="wow fadeIn"  data-tap-toggle="false">
-				<a href="#leftpanel" class="ui-btn ui-btn-left wow" data-wow-delay='0.8s'><i class="zmdi zmdi-menu"></i></a>
+				<a href="#leftpanel" class="ui-btn ui-btn-left wow" data-wow-delay='0.8s'><img src="img/ui/menu.png" style="width:16px;"></a>
 				<h1 class="wow" data-wow-delay='0.4s'>Dashboard</h1>
 				<ul data-role="nd2tabs" data-swipe="true">
 					<li data-tab="nearest" data-tab-active="true">Nearest</li>
@@ -65,7 +82,7 @@
 						</li>
 					</ul>
 				</div>
-                                <div data-role="nd2tab" data-tab="newest">
+				<div data-role="nd2tab" data-tab="newest">
 					<ul data-role="listview" data-icon="false" id="newest">
 						<li data-role="list-divider">
 							Newest
@@ -74,7 +91,97 @@
 				</div>
 			</div>
 		</div>
+		<div data-role="page" id="asd" class="cover-page">
+		
+			<!-- panel left -->
+			<div data-role="panel" id="leftpanelProfile" data-display="overlay" data-position-fixed="true" >
+				<nd2-include data-src="fragments/panel.left.html"></nd2-include>
+			</div>
+			<!-- /panel left -->
+			<div data-role="panel" id="bottomsheetProfile" data-animate="false" data-position='bottom' data-display="overlay">
+				<nd2-include data-src="fragments/bottom.sheet.html"></nd2-include>
+			</div>
+			<div data-role="header" data-id="foo4" data-position="fixed" class="wow fadeIn"  data-tap-toggle="false">
+				<a href="#leftpanelProfile" class="ui-btn ui-btn-left wow" data-wow-delay='0.8s'><i class="zmdi zmdi-menu"></i></a>
+				<h1 class="wow" data-wow-delay='0.4s'>Profile</h1>
+				<a href="#bottomsheetProfile" class="ui-btn ui-btn-right wow fadeIn" data-wow-delay='1.2s'><i class="zmdi zmdi-more-vert"></i></a>
+			</div>	
+			
+			<div role="main" class="ui-content wow fadeIn" data-wow-delay="0.2s"  data-inset="false" id="profileContent">
+			<div class="sub-header" id="sub-header-profile" >
+						<div class="profile-img layer" style="margin-top: 20px;" data-depth="0.60">
+							<img src="img/avatar.png" style="width: 128px; height: auto;">
+						</div>
+						<div class="profile-title layer" data-depth="0.20">
+							@adrian
+						</div>
+					</div>
+				<div class="profile-info">
+					<div><span class="number">12k</span><br />Tickrs</div>
+					<div><span class="number">5k</span><br />Followers</div>
+					<div><span class="number">1k</span><br />Following</div>
+					<div><span class="number">3k</span><br />Likes</div>
+				</div>
+				<div class="cover-content">
+					
+					
+					<div class="card">
+						<div class="card-header">
+							<div class="icon"><img src="img/avatar.png" style=""></div>
+							<div class="title" style="">@taylorW</div>
+							<div class="date" style="">2w</div>
+							<div class="clear" style=""></div>
+						</div>
+						<div class="card-image" id="cardImg1" scalar-y="0.1">
+							<img src="img/balloon2.jpg"  class="layer" data-depth="0.60">
+						</div>
+						<div class="card-footer" style="">
+							<div class="likes left"><i class="zmdi zmdi-thumb-up zmd-fw"></i> 5 Likes</div>
+							<div class="comments left margin"><i class="zmdi zmdi-comment-dots zmd-fw"></i> 73 Comments</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+					
+					<div class="card">
+						<div class="card-header">
+							<div class="icon"><img src="img/avatar.png" style=""></div>
+							<div class="title" style="">@taylorW</div>
+							<div class="date" style="">2w</div>
+							<div class="clear" style=""></div>
+						</div>
+						<div class="card-image"  id="cardImg2">
+							<img src="img/fifa.jpg"  class="layer" data-depth="0.60">
+						</div>
+						<div class="card-footer" style="">
+							<div class="likes left"><i class="zmdi zmdi-thumb-up zmd-fw"></i> 5 Likes</div>
+							<div class="comments left margin"><i class="zmdi zmdi-comment-dots zmd-fw"></i> 73 Comments</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+					
+					<div class="card">
+						<div class="card-header">
+							<div class="icon"><img src="img/avatar.png" style=""></div>
+							<div class="title" style="">@taylorW</div>
+							<div class="date" style="">2w</div>
+							<div class="clear" style=""></div>
+						</div>
+						<div class="card-image"  id="cardImg3">
+							<img src="img/car.jpg"  class="layer" data-depth="0.60">
+						</div>
+						<div class="card-footer" style="">
+							<div class="likes left"><i class="zmdi zmdi-thumb-up zmd-fw"></i> 5 Likes</div>
+							<div class="comments left margin"><i class="zmdi zmdi-comment-dots zmd-fw"></i> 73 Comments</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+					
+				</div>
+			
+			</div>
+		</div>
 		<div data-role="page" id="explore">
+		
 			<!-- panel left -->
 			<div data-role="panel" id="leftpanel1" data-display="overlay" data-position-fixed="true" >
 				<nd2-include data-src="fragments/panel.left.html"></nd2-include>
@@ -114,8 +221,7 @@
 				<!-- Simple Card :::: !-->
 			</div>
 		</div>
-            
-            <div data-role="page" id="create">
+		<div data-role="page" id="create">
 			<!-- panel left -->
 			<div data-role="panel" id="leftpanelCreate" data-display="overlay" data-position-fixed="true" >
 				<nd2-include data-src="fragments/panel.left.html"></nd2-include>
@@ -131,21 +237,61 @@
 			</div>
 			<div role="main" class="ui-content wow fadeIn" data-wow-delay="0.2s"  data-inset="false" id="createContent">
 				<label for="name2b">Title of your Tickr</label>
-                                <input type="text" name="name2" id="title" value="" data-clear-btn="true" placeholder="Title">
+				<input type="text" name="name2" id="title" value="" data-clear-btn="true" placeholder="Title">
+				<label for="textarea2b">Description</label>
+				<textarea cols="40" rows="8" name="textarea2" id="desc" placeholder="Description"></textarea>
+				<label for="select-choice-1b" class="select">Image</label>
+				<select name="select-choice-1" id="img" data-native-menu="false">
+					<option value="img/california.jpg">California</option>
+					<option value="img/balloon.jpg">Balloon</option>
+					<option value="img/wood.jpg">Wood</option>
+				</select>
+				<a href="#" onclick="createTicker()" class="ui-btn ui-btn-raised clr-primary">Create Tickr</a>
+			</div>
+		</div>
+		<div id="overlay" style="position: fixed; width: 100%; height: 100%; background-color: #000; z-index: 1000; background-image: url('img/fifa.jpg'); background-size: cover; background-position: center center; display: none; opacity: 0;"></div>
+		<div data-role="page" id="entry"  class="ui-page-theme-a">
+		
+		
+			<!-- panel left -->
+			<div data-role="panel" id="leftpanelPage" data-display="overlay" data-position-fixed="true" >
+				<nd2-include data-src="fragments/panel.left.html"></nd2-include>
+			</div>
+			<!-- /panel left -->
+			<div data-role="panel" id="bottomsheetPage" data-animate="false" data-position='bottom' data-display="overlay">
+				<nd2-include data-src="fragments/bottom.sheet.html"></nd2-include>
+			</div>
+			<div data-role="header" data-id="foo3" data-position="fixed" class="wow fadeIn"  data-tap-toggle="false">
+				<a href="#leftpanelPage" class="ui-btn ui-btn-left wow" data-wow-delay='0.8s'><i class="zmdi zmdi-menu"></i></a>
+				<h1 class="wow" data-wow-delay='0.4s' id="entryTitle">New Entry</h1>
+				<a href="#bottomsheetPage" class="ui-btn ui-btn-right wow fadeIn" data-wow-delay='1.2s'><i class="zmdi zmdi-more-vert"></i></a>
+			</div>
+			
+			<div role="main" class="ui-content wow fadeIn" data-wow-delay="0.2s"  data-inset="false" id="entryContent">
+                            <form>
 
-                                <label for="textarea2b">Description</label>
-	                    <textarea cols="40" rows="8" name="textarea2" id="desc" placeholder="Description"></textarea>
+				<label for="name2b">Headline</label>
+				<input type="text" name="name2" id="headline" value="" data-clear-btn="true" placeholder="Title">
+				
+                                <label for="textarea2b">Text</label>
+				<textarea cols="40" rows="8" name="textarea2" id="text" placeholder="Description"></textarea>
+				
+                                <fieldset data-role="controlgroup">
+                                    <legend>Options</legend>
 
-<label for="select-choice-1b" class="select">Image</label>
-                        <select name="select-choice-1" id="img" data-native-menu="false">
-                            <option value="img/california.jpg">California</option>
-                            <option value="img/balloon.jpg">Balloon</option>
-                            <option value="img/wood.jpg">Wood</option>
-                        </select>
-
-                                  
-							<a href="#" onclick="createTicker()" class="ui-btn ui-btn-raised clr-primary">Create Tickr</a>
-  
+                                    <input type="checkbox" name="checkbox-1a" id="geolocation" checked="">
+                                    <label for="geolocation">Post Geolocation</label>
+                                </fieldset>
+                                
+				<label for="select-choice-1b" class="select">Icon</label>
+				<select name="select-choice-1" id="icon" data-native-menu="false">
+					<option value="3d-rotation"><i class="zmdi zmdi-menu"></i>3D Rotation</option>
+					<option value="album">Album</option>
+					<option value="archive">Archive</option>
+				</select>
+				<a href="#" onclick="takePicture()" class="ui-btn teal ui-btn-raised clr-primary">Take Photo</a>
+				<a href="#" onclick="createEntry()" id="tickrBtn" class="ui-btn ui-btn-raised clr-primary">Create Entry</a>
+                            </form>
 			</div>
 		</div>
 		<script src="js/jquery.min.js"></script>
@@ -157,6 +303,7 @@
 		<script src="nativedroid/js/nd2settings.js"></script>
 		<script type="text/javascript" src="cordova.js"></script>
 		<script type="text/javascript" src="js/index.js"></script>
+		<script src="js/jquery.parallax.js"></script>
 		<!--	<script type="text/javascript">
 			document.addEventListener("deviceready",function(){
 			StatusBar.overlaysWebView( true );
@@ -167,5 +314,9 @@
 			</script>-->
 		<script src="js/ticker.js"></script>
 		<script src="js/search.js"></script>
+		<script src="js/profile.js"></script>
+		
+                
+		<script type="text/javascript" src="js/entries.js"></script>
 	</body>
 </html>

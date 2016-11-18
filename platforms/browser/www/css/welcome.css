@@ -1,0 +1,15 @@
+#registerLater{
+    color: #eee;
+    text-decoration: none;
+    text-transform: none;
+    font-size: 12px;
+
+}
+#welcome{
+    -webkit-transition: opacity 0.2s ease-in-out;
+    -moz-transition: opacity 0.2s ease-in-out;
+    -ms-transition: opacity 0.2s ease-in-out;
+    -o-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+}
+ 

@@ -60,7 +60,7 @@ body.nd2-ready {
 }
 
 body, input, select, textarea, button, .ui-btn,h1,h2,h3,h4,h5,h6 {
-	font-family: "RobotoDraft","Roboto","Helvetica Neue",sans-serif;
+	font-family: myRoboto, "RobotoDraft","Roboto","Helvetica Neue",sans-serif;
 	font-weight: 400;
 }
 

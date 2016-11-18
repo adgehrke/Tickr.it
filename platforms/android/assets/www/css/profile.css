@@ -1,0 +1,151 @@
+.cover-page .ui-content{
+    
+    background-size: 100% auto;
+    margin: 0;
+    padding: 0;
+}
+
+.cover-page .sub-header{
+	background: url("../img/balloon2.jpg") no-repeat top center fixed;
+	background-color: transparent;
+	background-size: 100% auto;
+	height: 400px;
+	position: fixed;
+	width: 100%;
+	text-align: center;
+}
+
+.cover-page .profile-title{
+	font-size: 24px;
+	color: #fff;
+	font-weight: bold;
+}
+
+.cover-page .ui-content{
+	
+	
+}
+
+.cover-page .ui-content{
+	background-color: #fff;
+	
+}
+
+.cover-page .profile-info{
+	height: 120px;
+	background-color: #FF9800;
+	
+	display: flex;
+	margin-top: 200px;
+    position: absolute;
+    width: 100%;
+}
+
+.cover-page .profile-info>*{
+	width: 100px;
+	height: auto;
+	margin: auto;
+	text-align: center;
+	color: #fff;
+	
+
+}
+
+.cover-page .profile-info{
+	font-size: 12px;
+
+}
+
+.cover-page .profile-info .number{
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.cover-page .cover-content{
+	background-color: #fff;
+
+	
+	    position: absolute;
+    width: 100%;
+    top: 384px;
+    height: auto;
+}
+
+.card{
+	width: auto; 
+	/*box-shadow: 0px 0px 3px #bbb;
+	width: 96%;
+	margin: 2%;
+	margin-bottom: 10px;
+	border-radius: 3px; */
+	width: 100%;
+	border-bottom: 1px solid #eee;
+	
+	
+	
+}
+
+.card .card-header{
+	padding: 10px;
+}
+
+.card .card-header .icon img{
+	border-radius: 100px; 
+	width: 32px; 
+	height: 32px; 
+	float: left;
+}
+.card .card-header .title{
+	float: left; 
+	line-height: 32px; 
+	margin-left: 10px;
+	
+	    font-weight: bold;
+    font-size: 12px;
+    text-transform: none;
+}
+
+.card .card-header .date{
+	float: right; 
+	line-height: 32px;
+	
+	font-weight: bold;
+    font-size: 12px;
+    text-transform: none;
+	color: #aaa;
+}
+
+.card .clear{
+	clear: both; 
+	height: 1px;
+}
+
+.card .card-image{
+	max-height: 180px;  
+	overflow: hidden;
+	height: auto;
+}
+
+.card .card-image img{
+	width: 140%;
+    height: auto;
+    left: -10% !important;
+	margin-top: -10% !important;
+}
+
+.card .card-footer{
+	 padding: 10px;
+}
+
+.card .card-footer .left{
+	float: left;
+	  font-weight: bold;
+    font-size: 12px;
+    text-transform: none;
+}
+
+.card .card-footer .margin{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+

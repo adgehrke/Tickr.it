@@ -51,7 +51,8 @@
     }
 };*/
 
-
+var userId = 1;
+var activeTicker = 0;
 $(document).ready(function() { 
       // jQuery is properly loaded at this point
       // so proceed to bind the Cordova's deviceready event
@@ -63,5 +64,18 @@ $(document).ready(function() {
            $.mobile.allowCrossDomainPages = true;
            $.support.cors=true;
     getTicker();
+	goParallax();
+	if (cordova.platformId == 'android') {
+		
+		if (StatusBar) {
+    //StatusBar.hide();
+	StatusBar.overlaysWebView(false);
+	StatusBar.backgroundColorByHexString("#333");
+}
+    
+}
       }); 
    });
+   
+   $( "#entry" ).on( "pageload", function( event, ui ) { getTickerByUserId();   } );
+

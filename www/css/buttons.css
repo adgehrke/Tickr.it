@@ -1,0 +1,32 @@
+html a.ui-btn{
+	text-transform: none;
+	border: none;
+}
+
+.ui-btn.red{
+	background-color: #F44336;
+	color: #fff !important;
+}
+
+.ui-btn.teal{
+	background-color: #009688;
+	color: #fff !important;
+}
+
+.ui-btn.green{
+	background-color: #4CAF50;
+	color: #fff !important;
+}
+
+.ui-btn.green:hover{
+	background-color: #43A047;
+}
+
+.ui-btn.blue{
+	background-color: #2196F3;
+	color: #fff !important;
+}
+
+.ui-btn.blue:hover{
+	background-color: #1976D2;
+}

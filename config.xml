@@ -24,8 +24,6 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <platform name="android">
-<preference name="StatusBarOverlaysWebView" value="true" />
-<preference name="StatusBarBackgroundColor" value="#ff0000" />
         <allow-intent href="market:*" />
     </platform>
     <platform name="ios">
@@ -77,9 +75,7 @@
     <rim:splash src="res/screen/blackberry/splashscreen.png"/>
 </platform>
  
-<preference name="SplashScreenDelay" value="3000" />
+<preference name="SplashScreenDelay" value="1000" />
 
-<preference name="StatusBarOverlaysWebView" value="true" />
-<preference name="StatusBarBackgroundColor" value="#ff0000" />
 
 </widget>
